@@ -15,7 +15,7 @@ try{
         $Dir = ($Dir | Where-Object{$_.Name -like "*x64*"}).FullName
         Write-Host "This is the directory we found with a WinGet folder. Checking to see if winget.exe exists within this dir: $Dir"
         if(Test-Path -Path "$Dir\winget.exe" -PathType Leaf){
-            Write-Host "WinGet is installed and up to date. Exiting with 0"
+            Write-Host "WinGet is installed. Exiting with 0"
             Stop-Transcript
             [System.Environment]::Exit(0)
         }else{
