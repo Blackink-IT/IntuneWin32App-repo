@@ -14,7 +14,6 @@ try{
         $Dir = dir "C:\Program Files\WindowsApps" | Where-Object{$_.Name -like "Microsoft.DesktopAppInstaller_*"}
         $Dir = ($Dir | Where-Object{$_.Name -like "*x64*"}).FullName
         Write-Host "This is the directory we found with a WinGet folder. Checking to see if winget.exe exists within this dir: $Dir"
-        Write-Host
         if(Test-Path -Path "$Dir\winget.exe" -PathType Leaf){
             Write-Host "WinGet is installed and up to date. Exiting with 0"
             Stop-Transcript
