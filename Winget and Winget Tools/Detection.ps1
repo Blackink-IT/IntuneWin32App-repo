@@ -1,5 +1,5 @@
 #Set error action
-#$ErrorActionPreference = "SilentlyContinue"
+$ErrorActionPreference = "SilentlyContinue"
 
 try{
     $Module = "WingetTools"
