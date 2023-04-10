@@ -11,18 +11,17 @@ try{
         if($updateModule.Version -ne (Get-InstalledModule -Name $Module).Version){
             Write-Host "$Module needs to be upgraded. Exiting with 1..."
             Stop-Transcript
-            [System.Environment]::Exit(1) 
+            [System.Environment]::Exit(1)
         }
+        Write-Host "$Module is up to date. Importing the module..."
         #Import Winget module
         Import-Module -Name $Module -Force
         #Test if WinGet is installed and up to date
+        Write-Host "$Module is imported. Testing if WinGet is missing or needs an update..."
         $TestWGVersion = Test-WGVersion -Quiet
+        Write-Host "Test-WGVersion results: $TestWGVersion"
         if(($TestWGVersion) -or ($null -eq $TestWGVersion)){
-            if($TestWGVersion){
-                Write-Host "WinGet is not up to date. Exiting with 1..."
-            }else{
-                Write-Host "WinGet is not installed. Exiting with 1..."
-            }
+            Write-Host "WinGet is either not installed or not up to date. Exiting with 1..."
             Stop-Transcript
             [System.Environment]::Exit(1)
         }else{
